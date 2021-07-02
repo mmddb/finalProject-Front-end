@@ -39,8 +39,15 @@ export default {
     submitForm(){
       axios.post('http://localhost:8081/login', this.form)
           .then((res) => {
-            if(res.data.code == 200){
+            if(res.data.code === 200){
+              this.$fire({
+                title: "Welcome",
+                text: "Login successful",
+                type: "success",
+                timer: 3000
+              });
               console.log("成功");
+
               this.$router.push({
                 path: `/`,
               });
