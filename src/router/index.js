@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import axios from "axios";
+//import axios from "axios";
 
 Vue.use(VueRouter)
 
@@ -20,11 +20,16 @@ Vue.use(VueRouter)
     name: 'login',
     component: () => import('../components/Login.vue')
   },
-    {
-      path: '/error',
-      name: 'error',
-      component: () => import('../components/Error.vue')
-    },
+  {
+    path: '/error',
+    name: 'error',
+    component: () => import('../components/Error.vue')
+  },
+  {
+    path: '/orderInfo',
+    name: 'orderInfo',
+    component: () => import('../components/RouteInfo.vue')
+  },
   {
     path: '/forgot-password',
     name: 'forgot-password',
@@ -44,32 +49,32 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  if(to.path.startsWith('/login')){
-    window.localStorage.removeItem('access-admin')
-    next()
-  } else {
-    let admin = JSON.parse(window.localStorage.getItem('access-admin'));
-    if (!admin){
-      next({path: '/login'})
-    } else {
-      axios({
-        url:'http://localhost:8081/checkToken',
-        method:'get',
-        headers:{
-          token:admin.result.token
-        }
-      }).then( res => {
-        console.log(res.data);
-            if (!res.data) {
-              console.log("校验失败")
-              next({path: '/error'})
-            }
-          }
-      )
-      next()
-    }
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if(to.path.startsWith('/login') || to.path.startsWith('/signup')){
+//     window.localStorage.removeItem('access-admin')
+//     next()
+//   } else {
+//     let admin = JSON.parse(window.localStorage.getItem('access-admin'));
+//     if (!admin){
+//       next({path: '/login'})
+//     } else {
+//       axios({
+//         url:'http://localhost:8081/checkToken',
+//         method:'get',
+//         headers:{
+//           token:admin.result.token
+//         }
+//       }).then( res => {
+//         console.log(res.data);
+//             if (!res.data) {
+//               console.log("校验失败")
+//               next({path: '/error'})
+//             }
+//           }
+//       )
+//       next()
+//     }
+//   }
+// })
 
 export default router

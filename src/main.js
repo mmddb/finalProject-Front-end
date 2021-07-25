@@ -11,7 +11,18 @@ import VueSimpleAlert from "vue-simple-alert";
 
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import * as VueGoogleMaps from "vue2-google-maps";
 
+import Antd from 'ant-design-vue';
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyA2puzdXIFqUCnySBgc8RuQCCL-eSB9Hq4",
+    libraries: "places"
+  }
+});
+
+Vue.use(Antd);
 Vue.use(VueSweetalert2);
 Vue.use(VueSimpleAlert);
 

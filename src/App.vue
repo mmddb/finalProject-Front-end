@@ -17,7 +17,6 @@
       </div>
     </nav>
 
-    <!-- Main -->
     <div class="App">
       <div class="vertical-center">
         <div class="inner-block">
@@ -25,6 +24,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 

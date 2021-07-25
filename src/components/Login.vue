@@ -1,7 +1,8 @@
 <template>
 
-    <div class="vue-template">
-        <form v-on:submit.prevent="submitForm" >
+    <div class="vue-template" >
+
+      <form v-on:submit.prevent="submitForm" >
             <h3>Sign In</h3>
 
             <div class="form-group">

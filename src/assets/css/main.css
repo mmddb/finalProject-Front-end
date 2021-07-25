@@ -28,15 +28,16 @@ html,
   display: flex;
   text-align: left;
   justify-content: center;
-  flex-direction: column;    
+  flex-direction: column;
 }
 
 .inner-block {
-  width: 450px;
+  width: 100%;
   margin: auto;
   background: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   padding: 40px 55px 45px 55px;
+
   border-radius: 15px;
   transition: all .3s;
 }
@@ -50,8 +51,10 @@ html,
   text-align: center;
   margin: 0;
   line-height: 1;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
+
+
 
 label {
   font-weight: 500;
