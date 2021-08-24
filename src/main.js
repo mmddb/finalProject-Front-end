@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@/assets/css/main.css'
 
@@ -14,6 +15,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import * as VueGoogleMaps from "vue2-google-maps";
 
 import Antd from 'ant-design-vue';
+
 
 Vue.use(VueGoogleMaps, {
   load: {

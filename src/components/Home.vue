@@ -1,46 +1,21 @@
 <template>
 
-  <el-container style="height: 500px; width: 500px; border: 1px solid #eee">
+  <el-container style="height: 90%; width: 100%; border: 1px solid #eee">
+
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-menu :default-openeds="['1', '3']">
-        <el-submenu index="1">
-          <template slot="title"><i class="el-icon-message"></i>Publish</template>
-          <el-menu-item-group>
-<!--            <template slot="title">Menu</template>-->
-            <el-menu-item index="1-1" @click="showPublish">New Order</el-menu-item>
-            <el-menu-item index="1-2">...</el-menu-item>
-          </el-menu-item-group>
-
-        </el-submenu>
-        <el-submenu index="2">
-          <template slot="title"><i class="el-icon-menu"></i>Orders</template>
-          <el-menu-item-group>
-            <el-menu-item index="2-1" @click="showOrderList" >Check Orders</el-menu-item>
-            <el-menu-item index="2-2" @click="showMyOrders">My Orders</el-menu-item>
-          </el-menu-item-group>
-
-        </el-submenu>
-        <el-submenu index="3">
-          <template slot="title"><i class="el-icon-setting"></i>Info</template>
-          <el-menu-item-group>
-            <el-menu-item index="3-1">Myself</el-menu-item>
-            <el-menu-item index="3-2">Support</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
+        <el-menu-item index="1" @click="showPublish" v-if="usertype === 'CLIENT'"><i class="el-icon-circle-plus"></i>
+          Publish</el-menu-item>
+        <el-menu-item index="2" @click="showOrderList"  v-if="usertype === 'DRIVER'"><i class="el-icon-s-marketing" ></i>Markets</el-menu-item>
+        <el-menu-item index="3" @click="showMyOrders"><i class="el-icon-s-order" ></i>MyOrders</el-menu-item>
+        <el-menu-item index="4" @click="showReviews"><i class="el-icon-s-comment"></i>Reviews</el-menu-item>
+        <el-menu-item index="5" @click="showMyInfo"><i class="el-icon-info"></i>MySelf</el-menu-item>
       </el-menu>
     </el-aside>
 
-    <el-container>
-      <el-header style="text-align: right; width: 800px; font-size: 12px">
-        <el-dropdown>
-          <i class="el-icon-setting" style="margin-right: 15px"></i>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <span>{{admin}}</span>
+    <el-container style="height: 500px; width: 500px; border: 1px solid #eee">
+      <el-header style="text-align: right; font-size: 12px">
+        <el-button type="primary" icon="el-icon-user">{{username}}</el-button>
       </el-header>
 
       <el-main style="width: 800px">
@@ -60,15 +35,25 @@
 import PublishOrder from "@/components/PublishOrder";
 import OrderList from "@/components/OrderList";
 import MyOrders from "@/components/MyOrders";
+import Welcome from "@/components/Welcome";
+import Reviews from "@/components/Reviews";
+import MyInfo from "@/components/MyInfo";
+
 export default {
   name: "Home",
-  components: {PublishOrder, OrderList, MyOrders},
+  components: {PublishOrder, OrderList, MyOrders, Reviews, MyInfo},
   comments:{
     PublishOrder
   },
   methods:{
     showPublish: function(){
       this.currentView = "PublishOrder";
+    },
+    showReviews: function(){
+      this.currentView = "Reviews";
+    },
+    showMyInfo: function(){
+      this.currentView = "MyInfo";
     },
     showMyOrders: function(){
       this.currentView = "MyOrders";
@@ -79,7 +64,8 @@ export default {
   },
   data() {
     return {
-      admin: "",
+      usertype:"",
+      username: "",
       currentView: "",
       form: {
         message: "hello"
@@ -87,30 +73,10 @@ export default {
     }
   },
   created() {
-    this.admin = JSON.parse(window.localStorage.getItem("access-admin")).result.name;
+    this.currentView = Welcome;
+    this.username = JSON.parse(window.localStorage.getItem("user")).name;
+    this.usertype = JSON.parse(window.localStorage.getItem("user")).type;
+    Welcome.data().username = this.username;
   }
 }
 </script>
-
-<style>
-.el-header, .el-footer {
-  background-color: #B3C0D1;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
-
-.el-aside {
-  background-color: #D3DCE6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
-.el-main {
-  background-color: #E9EEF3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-}
-</style>

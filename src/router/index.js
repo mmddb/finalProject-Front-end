@@ -39,12 +39,16 @@ Vue.use(VueRouter)
     path: '/postFormAxios',
     name: 'postFormAxios',
     component: () => import('../components/PostFormAxios.vue')
+  },
+  {
+    path: '/routeInfo',
+    name: 'routeInfo',
+    component: () => import('../components/RouteInfo.vue')
   }
-
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })

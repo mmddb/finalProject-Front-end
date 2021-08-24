@@ -65,7 +65,10 @@
 <script>
 import axios from "axios";
 export default {
-
+  beforeCreate() {
+    this.userType = JSON.parse(localStorage.getItem('user')).type;
+    this.userId = JSON.parse(localStorage.getItem('user')).id;
+  },
   name: "PublishOrder",
   data() {
     return {
@@ -85,7 +88,11 @@ export default {
   },
   methods: {
     onSubmit() {
-      axios.post('http://localhost:8082/publish', this.form)
+      axios.post('http://localhost:8082/order?clientId='+this.userId, this.form, {
+        headers:{
+          'token':JSON.parse(localStorage.getItem('token'))
+        }
+      })
           .then((res) => {
             if(res != null){
               this.$fire({

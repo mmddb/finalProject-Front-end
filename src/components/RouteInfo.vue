@@ -1,51 +1,38 @@
 <template>
   <div>
-    <b>Start:</b>
-    <select v-model="start">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-    </select>
-    <b>End:</b>
-    <select v-model="end">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-    </select>
-    <GmapMap :zoom="7" :center="{ lat: 41.85, lng: -87.65 }">
-      <DirectionsRenderer travelMode="DRIVING" :origin="origin" :destination="destionation"/>
+    <GmapMap :zoom="7" :center="{ lat: 40, lng: -80 }">
+      <DirectionsRenderer ref="directionsRenderer" travelMode="DRIVING" :origin="start" :destination="end" />
     </GmapMap>
   </div>
 </template>
 
 <script>
-import DirectionsRenderer from "@/components/DirectionsRenderer";
+import DirectionsRenderer from "@/components/DirectionsRenderer1";
 
 export default {
   components: {
     DirectionsRenderer
   },
-
+  distance: '',
+  duration:'',
   data: () => ({
-    start: "",
-    end: ""
+    start: "London, Heathrow",
+    end: "Paris"
   }),
+  created: function () {
+    // `this` 指向 vm 实例
+    console.log("你好大家好👊");
+    this.distance = this.$refs['dir']
+    console.log("routeInfo : " + this.distance);
+  },
+  afterCreate(){
 
-  computed: {
-    origin() {
-      if (!this.start) return null;
-      return { query: this.start };
-    },
-    destionation() {
-      if (!this.end) return null;
-      return { query: this.end };
-    }
   }
 };
 </script>
 
 <style>
 .vue-map-container {
-  height: 300px;
+  height: 500px;
 }
 </style>

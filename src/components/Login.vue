@@ -49,9 +49,9 @@
               footer: '<a href="">Why do I have this issue?</a>'
             })
           }
-          axios.post('http://localhost:8081/login', this.form)
+          axios.get('http://localhost:8081/user?email=' + this.form.email + "&password=" + this.form.password)
               .then((res) => {
-                if(res.data.code === 200){
+                if(res.status === 200){
                   this.$fire({
                     title: "Welcome",
                     text: "Login successful",
@@ -59,11 +59,18 @@
                     timer: 3000
                   });
                   console.log("成功");
-                  localStorage.setItem("access-admin", JSON.stringify(res.data))
+                  localStorage.setItem("user", JSON.stringify(res.data))
                   this.$router.push({
                     path: `/home`,
                   });
-                }else{
+                }
+                if(res.status === 404){
+                  this.$fire({
+                    title: "Sorry",
+                    text: "Login failed",
+                    type: "error",
+                    timer: 3000
+                  });
                   console.log("failed");
                 }
                 //Perform Success Action
@@ -73,7 +80,28 @@
                 // error.response.status   Check status code
               }).finally(() => {
                // Perform action in always
+
+            // then get a token
+
           });
+          axios.get('http://localhost:8081/token?email=' + this.form.email + "&password=" + this.form.password)
+              .then((res) => {
+                  if(res.status === 200){
+                    localStorage.setItem("token", JSON.stringify(res.data))
+                    console.log(JSON.stringify(res.data));
+                  }else{
+                    console.log("error");
+                  }
+                if(res.status === 404){
+                  this.$fire({
+                    title: "Sorry",
+                    text: "Login failed",
+                    type: "error",
+                    timer: 3000
+                  });
+                  console.log("failed");
+                }
+              });
         }
       },
       data() {
