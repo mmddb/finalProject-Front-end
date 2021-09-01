@@ -37,7 +37,7 @@ export default {
   },
   methods:{
     submitForm(){
-      axios.post('http://localhost:8081/login', this.form)
+      axios.post('http://34.150.38.10:8081/login', this.form)
           .then((res) => {
             if(res.data.code === 200){
               this.$fire({

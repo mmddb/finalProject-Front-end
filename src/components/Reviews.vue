@@ -44,8 +44,18 @@ export default {
   name: "Reviews",
 
   beforeCreate() {
-    this.userId = JSON.parse(localStorage.getItem('user')).id;
-    axios.get('http://localhost:8081/review?userId='+this.userId, {
+    console.log(this.$route.query)
+    if (this.$route.params && this.$route.query.userId) {
+        this.userId = this.$route.query.userId
+        console.log("从 路径中拿的")
+    } else if(localStorage.getItem('user') != null) {
+      this.userId = JSON.parse(localStorage.getItem('user')).id;
+      console.log("从 浏览器里中拿的")
+    }else{
+      console.log('review 的参数 啥都没')
+    }
+
+    axios.get('http://34.150.38.10:8081/review?userId='+this.userId, {
       headers:{
         'token' : localStorage.getItem('token')
       }

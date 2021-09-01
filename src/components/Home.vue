@@ -57,6 +57,7 @@ export default {
     },
     showMyOrders: function(){
       this.currentView = "MyOrders";
+
     },
     showOrderList: function(){
       this.currentView = "OrderList";

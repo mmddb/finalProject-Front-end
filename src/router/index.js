@@ -7,13 +7,18 @@ Vue.use(VueRouter)
   const routes = [
   {
     path: '/',
-    name: 'signup',
-    component: () => import('../components/Signup.vue')
+    name: 'login',
+    component: () => import('../components/Login.vue')
   },
     {
       path: '/home',
       name: 'home',
       component: () => import('../components/Home.vue')
+    },
+    {
+      path: '/reviews',
+      name: 'reviews',
+      component: () => import('../components/Reviews.vue')
     },
   {
     path: '/login',
@@ -41,9 +46,9 @@ Vue.use(VueRouter)
     component: () => import('../components/PostFormAxios.vue')
   },
   {
-    path: '/routeInfo',
-    name: 'routeInfo',
-    component: () => import('../components/RouteInfo.vue')
+    path: '/signup',
+    name: 'signup',
+    component: () => import('../components/Signup.vue')
   }
 ]
 
@@ -63,7 +68,7 @@ const router = new VueRouter({
 //       next({path: '/login'})
 //     } else {
 //       axios({
-//         url:'http://localhost:8081/checkToken',
+//         url:'http://34.150.38.10:8081/checkToken',
 //         method:'get',
 //         headers:{
 //           token:admin.result.token

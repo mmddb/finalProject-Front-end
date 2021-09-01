@@ -91,7 +91,7 @@ export default {
   // 写
   beforeCreate() {
 
-    axios.get('http://localhost:8082/order/all')
+    axios.get('http://34.150.38.10:8082/order/all')
         .then((res) => {
           // res -> data
           this.tableData = res.data;
@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     refresh(){
-      axios.get('http://localhost:8082/order/all')
+      axios.get('http://34.150.38.10:8082/order/all')
           .then((res) => {
             // res -> data
             this.tableData = res.data;
@@ -147,7 +147,7 @@ export default {
      var orderId = row.orderId;
 
      console.log(driverId, orderId);
-     axios.get("http://localhost:8082/updateOrderStatus", {
+     axios.get("http://34.150.38.10:8082/updateOrderStatus", {
        params : {
          driverId: driverId,
          orderId: orderId,
@@ -169,7 +169,7 @@ export default {
     // 发送数据
     quoteOrder(){
       this.userId = JSON.parse(localStorage.getItem('user')).id;
-      axios.post("http://localhost:8082/quote?driverId=" + this.userId
+      axios.post("http://34.150.38.10:8082/quote?driverId=" + this.userId
           + "&orderId=" + this.orderId + "&quote=" + this.quote,
       ).then((resp) => {
         console.log(resp);
