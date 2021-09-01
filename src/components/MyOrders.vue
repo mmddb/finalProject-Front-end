@@ -91,7 +91,7 @@ export default {
     this.userType = JSON.parse(localStorage.getItem('user')).type;
     this.userId = JSON.parse(localStorage.getItem('user')).id;
 
-    axios.get('http://localhost:8082/order?userType=' + this.userType+'&userId='+this.userId, {
+    axios.get('http://34.150.38.10:8082/order?userType=' + this.userType+'&userId='+this.userId, {
       headers:{
         token:localStorage.getItem('token')
       }
@@ -106,7 +106,7 @@ export default {
   },
   methods: {
     refresh() {
-      axios.get('http://localhost:8082/order?userType='+this.userType+'&userId='+this.userId)
+      axios.get('http://34.150.38.10:8082/order?userType='+this.userType+'&userId='+this.userId)
           .then((res) => {
             this.tableData = res.data;
             console.log("res :" + res.data);
@@ -128,7 +128,7 @@ export default {
 
     cancelOrder(row) {
       console.log(row);
-      axios.delete('http://localhost:8082/order',{
+      axios.delete('http://34.150.38.10:8082/order',{
         params:{
           userId: this.userId,
           type: this.userType,
@@ -143,7 +143,7 @@ export default {
     },
     confirmPayment(row) {
       console.log(row);
-      axios.put('http://localhost:8082/order?userId='+ this.userId
+      axios.put('http://34.150.38.10:8082/order?userId='+ this.userId
           + '&type=' + this.userType + '&orderId=' + row.orderId
           + '&status='+'PAID'
       ).then((res) => {console.log(res);}).catch((error)=>{console.log(error);});
@@ -151,7 +151,7 @@ export default {
 
     confirmTransport(row) {
       console.log(row);
-      axios.put('http://localhost:8082/order?userId='+ this.userId
+      axios.put('http://34.150.38.10:8082/order?userId='+ this.userId
       + '&type=' + this.userType + '&orderId=' + row.orderId
           + '&status='+'COMPLETED'
       ).then((res) => {console.log(res);}).catch((error)=>{console.log(error);});
@@ -168,7 +168,7 @@ export default {
     submitReview(){
       console.log(this.value);
       console.log(this.comment);
-      axios.post("http://localhost:8081/review",{
+      axios.post("http://34.150.38.10:8081/review",{
            comment : this.comment,
            clientId : this.userId,
            orderId: this.currentRow.orderId,
@@ -178,7 +178,7 @@ export default {
     },
 
     transportedOrder(row) {
-      axios.put('http://localhost:8082/order?userId='+ this.userId
+      axios.put('http://34.150.38.10:8082/order?userId='+ this.userId
           + '&type=' + this.userType + '&orderId=' + row.orderId
           + '&status='+'TRANSPORTED'
       ).then(rep => {

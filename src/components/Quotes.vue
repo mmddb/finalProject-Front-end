@@ -1,5 +1,5 @@
 <template>
-  <el-table-co :data="quotes"  border
+  <el-table :data="quotes"  border
             :header-row-style="{height:'20px'}"
             style="width: 400px">
 
@@ -21,7 +21,7 @@
         width="100">
     </el-table-column>
 
-  </el-table-co>
+  </el-table>
 </template>
 
 <script>
@@ -32,7 +32,7 @@ export default {
   },
   name: "Quotes",
   created() {
-    axios.get("http://localhost:8082/quote?orderId="+this.orderid
+    axios.get("http://34.150.38.10:8082/quote?orderId="+this.orderid
     ).then((res) => {
       // res -> data
       this.quotes = res.data;

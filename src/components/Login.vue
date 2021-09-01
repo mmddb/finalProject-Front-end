@@ -49,7 +49,7 @@
               footer: '<a href="">Why do I have this issue?</a>'
             })
           }
-          axios.get('http://localhost:8081/user?email=' + this.form.email + "&password=" + this.form.password)
+          axios.get('http://34.150.38.10:8081/user?email=' + this.form.email + "&password=" + this.form.password)
               .then((res) => {
                 if(res.status === 200){
                   this.$fire({
@@ -84,7 +84,7 @@
             // then get a token
 
           });
-          axios.get('http://localhost:8081/token?email=' + this.form.email + "&password=" + this.form.password)
+          axios.get('http://34.150.38.10:8081/token?email=' + this.form.email + "&password=" + this.form.password)
               .then((res) => {
                   if(res.status === 200){
                     localStorage.setItem("token", JSON.stringify(res.data))

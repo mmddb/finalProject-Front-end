@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      axios.post('http://localhost:8082/order?clientId='+this.userId, this.form, {
+      axios.post('http://34.150.38.10:8082/order?clientId='+this.userId, this.form, {
         headers:{
           'token':JSON.parse(localStorage.getItem('token'))
         }

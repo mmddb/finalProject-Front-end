@@ -59,7 +59,7 @@
             this.$alert("Password is required.");
             return;
           }
-          axios.post('http://localhost:8081/user', this.form)
+          axios.post('http://34.150.38.10:8081/user', this.form)
               .then((res) => {
                 console.log(res.status)
                 if(res.status === 201){

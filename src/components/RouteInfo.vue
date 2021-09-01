@@ -22,8 +22,8 @@ export default {
   created: function () {
     // `this` 指向 vm 实例
     console.log("你好大家好👊");
-    this.distance = this.$refs['dir']
-    console.log("routeInfo : " + this.distance);
+    //this.distance = this.34.150.38.10['dir']
+    //console.log("routeInfo : " + this.distance);
   },
   afterCreate(){
 
