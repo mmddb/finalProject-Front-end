@@ -63,8 +63,7 @@
                   this.$router.push({
                     path: `/home`,
                   });
-                }
-                if(res.status === 404){
+                }else {
                   this.$fire({
                     title: "Sorry",
                     text: "Login failed",
@@ -73,7 +72,6 @@
                   });
                   console.log("failed");
                 }
-                //Perform Success Action
               })
               .catch((error) => {
                 console.log(error);
