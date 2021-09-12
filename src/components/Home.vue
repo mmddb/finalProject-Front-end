@@ -9,7 +9,7 @@
         <el-menu-item index="2" @click="showOrderList"  v-if="usertype === 'DRIVER'"><i class="el-icon-s-marketing" ></i>Markets</el-menu-item>
         <el-menu-item index="3" @click="showMyOrders"><i class="el-icon-s-order" ></i>MyOrders</el-menu-item>
         <el-menu-item index="4" @click="showReviews"><i class="el-icon-s-comment"></i>Reviews</el-menu-item>
-        <el-menu-item index="5" @click="showMyInfo"><i class="el-icon-info"></i>MySelf</el-menu-item>
+<!--        <el-menu-item index="5" @click="showMyInfo"><i class="el-icon-info"></i>MySelf</el-menu-item>-->
       </el-menu>
     </el-aside>
 
@@ -37,11 +37,11 @@ import OrderList from "@/components/OrderList";
 import MyOrders from "@/components/MyOrders";
 import Welcome from "@/components/Welcome";
 import Reviews from "@/components/Reviews";
-import MyInfo from "@/components/MyInfo";
+// import MyInfo from "@/components/MyInfo";
 
 export default {
   name: "Home",
-  components: {PublishOrder, OrderList, MyOrders, Reviews, MyInfo},
+  components: {PublishOrder, OrderList, MyOrders, Reviews },
   comments:{
     PublishOrder
   },
@@ -52,9 +52,9 @@ export default {
     showReviews: function(){
       this.currentView = "Reviews";
     },
-    showMyInfo: function(){
-      this.currentView = "MyInfo";
-    },
+    // showMyInfo: function(){
+    //   this.currentView = "MyInfo";
+    // },
     showMyOrders: function(){
       this.currentView = "MyOrders";
 

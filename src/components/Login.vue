@@ -49,7 +49,7 @@
               footer: '<a href="">Why do I have this issue?</a>'
             })
           }
-          axios.get('http://34.150.38.10:8081/user?email=' + this.form.email + "&password=" + this.form.password)
+          axios.get('http://34.150.38.10:8090/USER-SERVICE/user?email=' + this.form.email + "&password=" + this.form.password)
               .then((res) => {
                 if(res.status === 200){
                   this.$fire({
@@ -63,18 +63,16 @@
                   this.$router.push({
                     path: `/home`,
                   });
-                }else {
-                  this.$fire({
-                    title: "Sorry",
-                    text: "Login failed",
-                    type: "error",
-                    timer: 3000
-                  });
-                  console.log("failed");
                 }
               })
               .catch((error) => {
                 console.log(error);
+                this.$fire({
+                  title: "Sorry",
+                  text: "Wrong email or password",
+                  type: "error",
+                  timer: 3000
+                });
                 // error.response.status   Check status code
               }).finally(() => {
                // Perform action in always
@@ -82,7 +80,7 @@
             // then get a token
 
           });
-          axios.get('http://34.150.38.10:8081/token?email=' + this.form.email + "&password=" + this.form.password)
+          axios.get('http://34.150.38.10:8090/USER-SERVICE/token?email=' + this.form.email + "&password=" + this.form.password)
               .then((res) => {
                   if(res.status === 200){
                     localStorage.setItem("token", JSON.stringify(res.data))

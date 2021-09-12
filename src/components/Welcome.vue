@@ -1,17 +1,15 @@
 <template>
   <el-card>
     <div>
-      Nice to see you  {{username}}
+      Nice to see you
     </div>
   </el-card>
 </template>
 
 <script>
 export default {
-  name: "Welcome",
   data() {
     return {
-      username: "",
     }
   }
 }

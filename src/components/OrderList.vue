@@ -91,7 +91,7 @@ export default {
   // 写
   beforeCreate() {
 
-    axios.get('http://34.150.38.10:8082/order/all')
+    axios.get('http://34.150.38.10:8082/limitorder?pagesize=10&start=0')
         .then((res) => {
           // res -> data
           this.tableData = res.data;
@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     refresh(){
-      axios.get('http://34.150.38.10:8082/order/all')
+      axios.get('http://34.150.38.10:8082/limitorder?pagesize=10&start=0')
           .then((res) => {
             // res -> data
             this.tableData = res.data;
@@ -171,8 +171,17 @@ export default {
       this.userId = JSON.parse(localStorage.getItem('user')).id;
       axios.post("http://34.150.38.10:8082/quote?driverId=" + this.userId
           + "&orderId=" + this.orderId + "&quote=" + this.quote,
-      ).then((resp) => {
-        console.log(resp);
+      ).then((rep) => {
+        if(rep.status === 201){
+          this.$fire({
+            title: "Congrats !",
+            text: "Quoted successful",
+            type: "success",
+            timer: 3000
+          });
+          this.refresh();
+        }
+        console.log(rep);
       })
     },
 

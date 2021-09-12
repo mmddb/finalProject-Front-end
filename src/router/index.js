@@ -41,11 +41,6 @@ Vue.use(VueRouter)
     component: () => import('../components/ForgotPassword.vue')
   },
   {
-    path: '/postFormAxios',
-    name: 'postFormAxios',
-    component: () => import('../components/PostFormAxios.vue')
-  },
-  {
     path: '/signup',
     name: 'signup',
     component: () => import('../components/Signup.vue')

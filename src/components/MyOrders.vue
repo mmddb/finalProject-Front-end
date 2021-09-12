@@ -135,6 +135,15 @@ export default {
           orderId: row.orderId,
         }
       }).then((res) => {
+        if(res.data === true){
+          this.$fire({
+            title: "Congrats!",
+            text: "Deleted successful",
+            type: "success",
+            timer: 3000
+          });
+          this.refresh();
+        }
         console.log(res);
       }).catch((error)=>{
         console.log(error);
@@ -146,7 +155,25 @@ export default {
       axios.put('http://34.150.38.10:8082/order?userId='+ this.userId
           + '&type=' + this.userType + '&orderId=' + row.orderId
           + '&status='+'PAID'
-      ).then((res) => {console.log(res);}).catch((error)=>{console.log(error);});
+      ).then((res) => {
+        if(res.data === true){
+          this.$fire({
+            title: "Notification",
+            text: "Thanks for the payment",
+            type: "success",
+            timer: 3000
+          });
+          this.refresh();
+        }else{
+          this.$fire({
+            title: "Notification",
+            text: "Invalid user type or unreasonable update",
+            type: "error",
+            timer: 3000
+          });
+        }
+        console.log(res);
+      }).catch((error)=>{console.log(error);});
     },
 
     confirmTransport(row) {
@@ -154,7 +181,25 @@ export default {
       axios.put('http://34.150.38.10:8082/order?userId='+ this.userId
       + '&type=' + this.userType + '&orderId=' + row.orderId
           + '&status='+'COMPLETED'
-      ).then((res) => {console.log(res);}).catch((error)=>{console.log(error);});
+      ).then((res) => {
+        if(res.data === true){
+          this.$fire({
+            title: "Notification",
+            text: "Thanks for the service",
+            type: "success",
+            timer: 3000
+          });
+          this.refresh();
+        }else{
+          this.$fire({
+            title: "Notification",
+            text: "Invalid user type or unreasonable update",
+            type: "error",
+            timer: 3000
+          });
+        }
+        console.log(res);
+      }).catch((error)=>{console.log(error);});
     },
 
     // make review
@@ -165,6 +210,7 @@ export default {
       this.currentRow = row;
       console.log(this.currentRow);
     },
+
     submitReview(){
       console.log(this.value);
       console.log(this.comment);
@@ -174,7 +220,23 @@ export default {
            orderId: this.currentRow.orderId,
            driverId: this.currentRow.driverId,
            star: this.value
-      })
+      }).then((res) => {
+            if(res.data === true){
+              this.$fire({
+                title: "Notification",
+                text: "Make review successfully",
+                type: "success",
+                timer: 3000
+              });
+              this.refresh();
+            }else{
+              this.$fire({
+                title: "Notification",
+                text: "can't update now",
+                type: "error",
+                timer: 3000
+              });
+            }})
     },
 
     transportedOrder(row) {

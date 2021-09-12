@@ -34,7 +34,6 @@
             Already registered
             <router-link :to="{name: 'login'}">sign in?</router-link>
           </p>
-
         </form>
     </div>
 </template>
